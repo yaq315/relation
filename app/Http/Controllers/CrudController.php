@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class CrudController extends Controller
 {
     public function index(){
-        $users=User::with('phone')->get();
+        $users = User::all();
         return view('users.index',compact('users'));
 
     }
@@ -34,7 +34,7 @@ class CrudController extends Controller
         $users = User::with('phone')->findOrFail($id);
         return view('users.edit',compact('users'));
     }
-    public function update(Request $request,  $id){
+    public function update(Request $request,){
         $users = User::findOrFail([
             'name' => $request->name,
             'email' => $request->email,

@@ -11,11 +11,7 @@
 
     <label for="password">password:</label>
     <input type="password" id="password" name="password" required><br><br>
-
     
-    <label for="phone">phone:</label>
-    <input type="phone" id="phone" name="phone" required><br><br>
-
     <button type="submit">Submit</button>
 
 </form>

@@ -9,7 +9,7 @@
             <th>name</th>  
             <th>email</th> 
             <th>password</th>  
-            <th>phone</th> 
+           
             <th>action</th>  
         </tr>
     </thead>
@@ -21,9 +21,10 @@
                 <td>{{ $user->name }}</td>
                 <td>{{  $user->email }}</td>
                 <td>{{  $user->password }}</td>
-                <td>{{ $user->phone}}</td>
+             
                
                 <td>
+                    <a href="{{ route('user.show', $user->id) }}">View</a>
                     <a href="{{ route('user.edit',  $user->id) }}">Edit</a>
 
                     <form action="{{ route('user.destroy',  $user->id) }}" method="POST" >

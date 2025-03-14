@@ -5,15 +5,13 @@
     @method('PUT') 
 
     <label>Name:</label>
-    <input type="text" name="name" value="{{ $users->name }}" required>
+    <input type="text" name="name" value="{{old('name',$users->name) }}" required>
 
     <label>Email:</label>
-    <input type="email" name="email" value="{{$users->email }}" required>
+    <input type="email" name="email" value="{{old('email',$users->email) }}" required>
 
     <label>password:</label>
-    <input type="password" name="password" value="{{ $users->password }}" required>
+    <input type="password" name="password" value="{{old('password',$users->password ) }}" required>
 
-    <label>phone:</label>
-    <input type="text" name="phone_number" value="{{ $users->phone }}">
-    <button type="submit">update</button>
+    <a href="{{ route('user.index') }}">Back to users List</a>
 </form>

@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\CrudController;
+use App\Http\Controllers\postcontrollers;
 use App\Http\Controllers\UserControllers;
 use Illuminate\Support\Facades\Route;
+
 
 
 
@@ -24,4 +26,5 @@ Route::get('/', function () {
 
 // Route::get ('user',[UserControllers::class,'index']);
 
-Route::resource('user',CrudController::class);
+Route::resource('user',UserControllers::class);
+Route::resource('post',postcontrollers::class);

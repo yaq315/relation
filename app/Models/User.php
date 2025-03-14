@@ -51,8 +51,8 @@ class User extends Authenticatable
     //     return $this->hasOne(phone::class);
     // }
 
-    public function phone(){
-        return $this->hasMany(phone::class);
+    public function post(){
+        return $this->hasMany(post::class);
     }
     use SoftDeletes;
 }
