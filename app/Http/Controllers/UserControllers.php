@@ -8,47 +8,87 @@ use Illuminate\Http\Request;
 
 class UserControllers extends Controller
 {
-    public function index(){
-        $users = User::all();
-        return view('users.index',compact('users'));
+    public function index()
+    {
+        $users = User::with('phone')->get(); 
+        return view('users.index', compact('users'));
+    }
 
+
+    public function create()
+    {
+        return view('users.create');
     }
-    public function create(){
-    return view('users.create');
-    }
-    public function store(Request $request){
-        $users = User::create([
+
+
+    public function store(Request $request)
+    {
+     
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'phone_number' => 'required|string|max:15',
+        ]);
+
+
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' =>$request->password,
-         
-
         ]);
-        return redirect( 'users');
+
+    
+        $user->phone()->create([
+            'number' => $request->phone_number,
+        ]);
+
+        return redirect()->route('user.index');
     }
-    public function show($id){
-$users = User::findOrFail($id);
-return view('users.show',compact('users'));
+
+  
+    public function show(User $user)
+    {
+        $user->load('phone'); 
+        return view('users.show', compact('user'));
     }
-    public function edit($id){
-        $users = User::findOrFail($id);
-        return view('users.edit',compact('users'));
+
+
+    public function edit(User $user)
+    {
+        $user->load('phone'); 
+        return view('users.edit', compact('user'));
     }
-    public function update(Request $request,$id){
-        $users = User::findOrFail($id);
-        $users=user::update([
+
+
+    public function update(Request $request, User $user)
+    {
+    
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'phone_number' => 'required|string|max:15',
+        ]);
+
+    
+        $user->update([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => $request->password,
-           
         ]);
-        
-        return redirect('users');
+
+      
+        $user->phone()->updateOrCreate(
+            ['user_id' => $user->id], 
+            ['number' => $request->phone_number] 
+        );
+
+        return redirect()->route('user.index');
     }
-    public function destroy($id){
-        $users = User::findOrFail($id);
-        $users->delete();
-        return redirect( 'users');
+
+   
+    public function destroy(User $user)
+    {
+        $user->phone()->delete(); 
+        $user->delete(); 
+        return redirect()->route('user.index');
     }
 
 

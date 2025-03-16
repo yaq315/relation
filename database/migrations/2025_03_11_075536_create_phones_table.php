@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('phones', function (Blueprint $table) {
             $table->id();
-            $table->string('number',10);
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->softDeletes();
+            $table->string('number');
+            $table->unsignedBigInteger('user_id')->unique(); 
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

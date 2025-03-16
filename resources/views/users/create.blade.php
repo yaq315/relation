@@ -1,17 +1,18 @@
 
-<h1> Create New crud </h1>
-
-<form action="{{route('user.store')}}" method="POST">
-    @csrf
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required><br><br>
-
-    <label for="email">email:</label>
-    <input type="email" id="email" name="email" required><br><br>
-
-    <label for="password">password:</label>
-    <input type="password" id="password" name="password" required><br><br>
-    
-    <button type="submit">Submit</button>
-
-</form>
+    <h1>Create New User</h1>
+    <form action="{{ route('user.store') }}" method="POST">
+        @csrf
+        <div>
+            <label>Name:</label>
+            <input type="text" name="name" required>
+        </div>
+        <div>
+            <label>Email:</label>
+            <input type="email" name="email" required>
+        </div>
+        <div>
+            <label>Phone Number:</label>
+            <input type="text" name="phone_number" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>
