@@ -15,7 +15,7 @@
         </div>
         <div>
             <label>Phone Number:</label>
-            <input type="text" name="phone_number" value="{{ $user->phone }}" required>
+            <input type="text" name="phone_number" value="{{ $user->phone->number }}" required>
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
     </form>

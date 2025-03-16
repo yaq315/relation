@@ -19,7 +19,7 @@
                     <td>{{ $user->id }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
-                    <td>{{ $user->phone }}</td>
+                    <td>{{ $user->phone->number }}</td>
                     <td>
                         <a href="{{ route('user.show', $user) }}" class="btn btn-info">Show</a>
                         <a href="{{ route('user.edit', $user) }}" class="btn btn-warning">Edit</a>
